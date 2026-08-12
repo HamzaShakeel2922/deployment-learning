@@ -21,13 +21,13 @@ jobs:
         with:
           context: ./react-app
           push: true
-          tags: react-v1.0
+          tags: ${{ secrets.DOCKER_USERNAME }}/docker-learning:react-v1.0
       
       - name: build backend image and push 
         uses: docker/build-push-action@v7
         with:
           context: ./WeatherApi
           push: true
-          tags: backend-v1.0
+          tags: ${{ secrets.DOCKER_USERNAME }}/docker-learning:backend-v1.0
     
         
