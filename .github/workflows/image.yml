@@ -16,11 +16,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
       
-      - name: build image and push 
+      - name: build react image and push 
         uses: docker/build-push-action@v7
         with:
-          context: .
+          context: ./react-app
           push: true
-          tags: v1.0
-
+          tags: react-v1.0
+      
+      - name: build backend image and push 
+        uses: docker/build-push-action@v7
+        with:
+          context: ./WeatherApi
+          push: true
+          tags: backend-v1.0
+    
         
