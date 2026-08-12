@@ -26,7 +26,7 @@ jobs:
       - name: build backend image and push 
         uses: docker/build-push-action@v7
         with:
-          context: ./WeatherApi
+          context: ./weatherApi
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/docker-learning:backend-v1.0
     
