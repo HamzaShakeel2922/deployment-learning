@@ -1,0 +1,26 @@
+name: image
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: "actions/checkout@v4"
+      
+      - name: login to docker
+        uses: "docker/login-action@v4"
+        with: 
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      
+      - name: build image and push 
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: true
+          tags: v1.0
+
+        
