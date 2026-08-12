@@ -21,7 +21,7 @@ jobs:
         with:
           context: ./react-app
           build-args: |
-            VITE_API: http://192.168.182.129:8080
+            VITE_API=http://192.168.182.129:8080
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/docker-learning:react-v1.0
       
