@@ -1,0 +1,39 @@
+services: 
+    frontend:
+      restart: unless-stopped 
+      build: 
+        context: ./react-app
+        target: production
+        args: 
+          VITE_MODE: production
+      environment:
+        VITE_API: backend:8080
+      ports: 
+        - 80:80
+      depends_on:
+        - backend
+
+    db:
+      restart: unless-stopped
+      image: postgres
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+      volumes:
+       - postgres_data:/var/lib/postgresql
+
+    backend:
+      restart: unless-stopped
+      build:
+        context: ./weatherApi
+        target: production
+      ports:
+        - "8080:8080"  
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+        - ConnectionStrings__Default=Host=db;Port=5432;Database=EmployeeDB;Username=postgres;Password=postgres
+      depends_on:
+        - db
+
+volumes:
+  postgres_data:                 
