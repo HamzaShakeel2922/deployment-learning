@@ -16,7 +16,9 @@ CMD ["npm", "run", "dev"]
 
 FROM base AS builder
 ARG VITE_MODE=production
-RUN npm run build -- --mode=$VITE_MODE
+ARG VITE_API
+ENV VITE_API=${VITE_API}
+RUN npm run build -- --mode=${VITE_MODE}
 
 # -------------------- Production stage
 

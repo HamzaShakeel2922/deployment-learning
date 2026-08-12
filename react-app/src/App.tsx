@@ -6,7 +6,8 @@ import './App.css'
 
 function App() {
   const [data, setData] = useState([])
-  
+  console.log("VITE_API =", import.meta.env.VITE_API);
+
   useEffect(()=> {
     fetch(`${import.meta.env.VITE_API}/weather`)
     .then((res) => res.json())
@@ -24,7 +25,7 @@ function App() {
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-          <h1>Dockerized App is working fine now !!</h1>
+          <h1>fine now !!</h1>
           <h3>{JSON.stringify(data)}</h3>
         </div>
       </section>
