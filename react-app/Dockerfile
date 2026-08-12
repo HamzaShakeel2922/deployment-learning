@@ -17,6 +17,7 @@ CMD ["npm", "run", "dev"]
 FROM base AS builder
 ARG VITE_MODE=production
 ARG VITE_API
+RUN echo "VITE_API=${VITE_API}}"
 ENV VITE_API=${VITE_API}
 RUN npm run build -- --mode=${VITE_MODE}
 
